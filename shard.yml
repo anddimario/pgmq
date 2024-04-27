@@ -1,0 +1,16 @@
+name: pgmq
+version: 0.1.0
+
+authors:
+  - Andrea Di Mario <anddimario@gmail.com>
+
+description: >
+  Library for https://github.com/tembo-io/pgmq
+
+crystal: '>= 1.12.1'
+
+license: MIT
+
+dependencies:
+  pg:
+    github: will/crystal-pg
