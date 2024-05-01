@@ -1,11 +1,17 @@
-startup:
-  docker run -d --name test_pgmq -e POSTGRES_PASSWORD=postgres -p 5432:5432 quay.io/tembo/pgmq-pg:latest
+CONTAINER_NAME:='test_pgmq'
+
+startup: cleanup
+  docker run -d --name {{CONTAINER_NAME}} -e POSTGRES_PASSWORD=postgres -p 5432:5432 quay.io/tembo/pgmq-pg:latest
   sleep 2
-  docker exec -it test_pgmq psql -c "CREATE EXTENSION pgmq;"
+  docker exec -it {{CONTAINER_NAME}} psql -c "CREATE EXTENSION pgmq;"
 
 test:
   crystal spec
 
 cleanup:
-  docker stop test_pgmq
-  docker rm test_pgmq
+  #!/bin/bash
+  if [ "$(docker ps -q -f name={{CONTAINER_NAME}})" ]; then
+    echo "Container {{CONTAINER_NAME}} is running. Attempting to stop."
+    docker stop {{CONTAINER_NAME}}
+    docker rm {{CONTAINER_NAME}}
+  fi

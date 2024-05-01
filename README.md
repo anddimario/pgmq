@@ -1,6 +1,11 @@
 # pgmq
 
-TODO: Write a description here
+A Crsytal client for [PGMQ](https://github.com/tembo-io/pgmq)
+
+## Features
+
+- Queue: create, archive count, purge, drop, metrics
+- Message: send, read, delete, archive, pop
 
 ## Installation
 
@@ -9,7 +14,7 @@ TODO: Write a description here
    ```yaml
    dependencies:
      pgmq:
-       github: your-github-user/pgmq
+       github: anddimario/pgmq
    ```
 
 2. Run `shards install`
@@ -20,11 +25,13 @@ TODO: Write a description here
 require "pgmq"
 ```
 
-TODO: Write usage instructions here
-
 ## Development
 
-TODO: Write development instructions here
+Install [just](https://github.com/casey/just)
+
+### Run test
+
+Run: `just startup test cleanup`
 
 ## Contributing
 
